@@ -1,0 +1,77 @@
+<SuperheroCard>:
+    orientation: 'vertical'
+    size_hint: None, None
+    size: 300, 150
+    padding: 10
+    spacing: 5
+    canvas.before:
+        Color:
+            rgba: 0.2, 0.3, 0.4, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15, 15, 15, 15]
+
+    BoxLayout:
+        size_hint_y: None
+        height: 30
+        Label:
+            text: root.name
+            font_size: 18
+            bold: True
+
+    Label:
+        text: root.description
+        text_size: self.width, None
+        size_hint: 1, 1
+        font_size: 14
+
+    Label:
+        text: root.emojis
+        font_size: 20
+        size_hint_y: None
+        height: 30
+
+<SuperheroEmojiApp>:
+    orientation: 'vertical'
+    spacing: 10
+    padding: 20
+
+    Label:
+        text: 'Superhero Emoji Guesser'
+        font_size: 28
+        size_hint_y: None
+        height: 50
+
+    BoxLayout:
+        size_hint_y: None
+        height: 100
+        spacing: 10
+
+        TextInput:
+            id: emoji1_input
+            hint_text: 'First Emoji'
+            font_size: 24
+            multiline: False
+            size_hint_x: 0.4
+
+        TextInput:
+            id: emoji2_input
+            hint_text: 'Second Emoji'
+            font_size: 24
+            multiline: False
+            size_hint_x: 0.4
+
+        Button:
+            text: 'Guess!'
+            size_hint_x: 0.2
+            on_press: root.guess_superhero()
+
+    ScrollView:
+        GridLayout:
+            id: superhero_grid
+            cols: 2
+            spacing: 10
+            padding: 10
+            size_hint_y: None
+            height: self.minimum_height
