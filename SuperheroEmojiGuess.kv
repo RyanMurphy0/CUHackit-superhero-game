@@ -1,0 +1,99 @@
+<SuperheroCard>:
+    orientation: 'vertical'
+    size_hint: None, None
+    size: 300, 150
+    padding: 10
+    spacing: 5
+    pos_hint: {'center_x': 0.5}
+    canvas.before:
+        Color:
+            rgba: 1, 0.65, 0, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15, 15, 15, 15]
+
+    BoxLayout:
+        size_hint_y: None
+        height: 30
+        Label:
+            text: root.name
+            font_size: 18
+            bold: True
+            halign: 'center'
+
+    Label:
+        text: root.emojis
+        font_size: 20
+        size_hint_y: None
+        height: 30
+        halign: 'center'
+        font_name: "C:/Windows/Fonts/seguisym.ttf"
+
+<SuperheroEmojiApp>:
+    orientation: 'vertical'
+    spacing: 10
+    padding: 20
+
+    # Center the whole layout
+    MDBoxLayout:
+        orientation: 'vertical'
+        spacing: 20
+        size_hint_x: 0.8
+        pos_hint: {'center_x': 0.5}
+
+        # Title at the top
+        MDLabel:
+            text: 'Superhero Emoji Guesser'
+            font_style: 'H4'
+            size_hint_y: None
+            height: 60
+            halign: 'center'
+
+        # Input fields in a horizontal layout
+        MDBoxLayout:
+            orientation: 'horizontal'
+            spacing: 10
+            size_hint_y: None
+            height: 60
+
+            MDTextField:
+                id: emoji1_input
+                hint_text: 'First Emoji'
+                font_size: 24
+                multiline: False
+                font_name: "C:/Windows/Fonts/seguisym.ttf"
+                mode: "round"
+
+            MDTextField:
+                id: emoji2_input
+                hint_text: 'Second Emoji'
+                font_size: 24
+                multiline: False
+                font_name: "C:/Windows/Fonts/seguisym.ttf"
+                mode: "round"
+
+        # Guess button as a separate element
+        MDFillRoundFlatButton:
+            text: 'Guess!'
+            size_hint: None, None
+            width: 200
+            height: 50
+            pos_hint: {'center_x': 0.5}
+            on_press: root.guess_superhero()
+
+    AnchorLayout:
+        anchor_x: 'center'
+        ScrollView:
+            id: scroll_view
+            size_hint_x: None
+            width: 620
+
+            GridLayout:
+                id: superhero_grid
+                cols: 2
+                spacing: 10
+                padding: 10
+                size_hint_y: None
+                size_hint_x: 1
+                height: self.minimum_height
